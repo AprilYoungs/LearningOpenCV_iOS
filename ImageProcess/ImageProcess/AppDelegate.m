@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "FilterViewController.h"
+#import "CameraController.h"
 
 @interface AppDelegate ()
 
@@ -20,8 +21,8 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
-    FilterViewController *filter = [[FilterViewController alloc] init];
-    self.window.rootViewController = filter;
+    
+    self.window.rootViewController = [[FilterViewController alloc] init];
     [self.window makeKeyAndVisible];
     
     return YES;

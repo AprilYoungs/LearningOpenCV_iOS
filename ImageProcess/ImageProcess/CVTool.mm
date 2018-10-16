@@ -8,6 +8,8 @@
 
 #import "CVTool.hh"
 
+using namespace cv;
+
 @implementation CVTool
 
 + (cv::Mat)cvMatFromUIImage:(UIImage *)image
@@ -93,4 +95,5 @@
     
     return finalImage;
 }
+
 @end

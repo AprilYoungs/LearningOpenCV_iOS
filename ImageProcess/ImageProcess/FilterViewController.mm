@@ -31,6 +31,7 @@
 {
     self.imageView = [[UIImageView alloc] init];
     self.imageView.image = [UIImage imageNamed:@"Screen"];
+    self.imageView.contentMode = UIViewContentModeScaleAspectFit;
     [self.view addSubview:self.imageView];
     
     self.imageView.frame = self.view.bounds;
@@ -51,22 +52,30 @@
 #ifdef __cplusplus
 -(void)processImage:(cv::Mat &)image
 {
+    
 //    cv::Mat image_copy;
 //    cv::cvtColor(image, image_copy, cv::COLOR_BGR2GRAY);
+//
+//    /** reverse color */
 //    cv::bitwise_not(image_copy, image_copy);
 //    cv::Mat bgr;
 //    cv::cvtColor(image_copy, bgr, cv::COLOR_GRAY2BGR);
+//    /** Only accept three or four channel */
 //    cv::cvtColor(bgr, image, cv::COLOR_BGR2BGRA);
-//    UIImage *grayImage = [self imageFromCVMat:image_copy];
     
+    
+    
+    /** canny process */
     cv::Mat gray;
     cv::cvtColor(image, gray, cv::COLOR_BGR2GRAY);
-    
     cv::Mat canny;
-    cv::Canny(gray, canny, 50, 150);
+    cv::Canny(gray, canny, 50, 110);
+    canny = 255 - canny;
+    
+    cv::cvtColor(canny, image, cv::COLOR_GRAY2BGRA);
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        self.imageView.image = [CVTool imageFromCVMat:canny];
+        self.imageView.image = [CVTool imageFromCVMat:image];
     });
 }
 
