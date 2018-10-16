@@ -23,6 +23,7 @@
 		6F22D1AC2175C1DF0012CA58 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F22D1AB2175C1DE0012CA58 /* QuartzCore.framework */; };
 		6F22D1AE2175C1E60012CA58 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F22D1AD2175C1E60012CA58 /* UIKit.framework */; };
 		6F22D1B02175C1EF0012CA58 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F22D1AF2175C1EF0012CA58 /* Foundation.framework */; };
+		6F22D1B32175E17C0012CA58 /* CVTool.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6F22D1B22175E17C0012CA58 /* CVTool.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,8 @@
 		6F22D1AB2175C1DE0012CA58 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		6F22D1AD2175C1E60012CA58 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6F22D1AF2175C1EF0012CA58 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		6F22D1B12175E17C0012CA58 /* CVTool.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CVTool.hh; sourceTree = "<group>"; };
+		6F22D1B22175E17C0012CA58 /* CVTool.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = CVTool.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +98,8 @@
 				6F22D17621758F240012CA58 /* AppDelegate.m */,
 				6F22D18B21758F5D0012CA58 /* FilterViewController.h */,
 				6F22D18C21758F5D0012CA58 /* FilterViewController.mm */,
+				6F22D1B12175E17C0012CA58 /* CVTool.hh */,
+				6F22D1B22175E17C0012CA58 /* CVTool.mm */,
 				6F22D17E21758F250012CA58 /* Assets.xcassets */,
 				6F22D18021758F250012CA58 /* LaunchScreen.storyboard */,
 				6F22D18321758F250012CA58 /* Info.plist */,
@@ -193,6 +198,7 @@
 			files = (
 				6F22D18521758F250012CA58 /* main.m in Sources */,
 				6F22D18D21758F5D0012CA58 /* FilterViewController.mm in Sources */,
+				6F22D1B32175E17C0012CA58 /* CVTool.mm in Sources */,
 				6F22D17721758F240012CA58 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
