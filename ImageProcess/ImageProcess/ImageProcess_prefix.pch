@@ -1,0 +1,17 @@
+//
+//  ImageProcess_prefix.pch
+//  ImageProcess
+//
+//  Created by Young on 10/16/18.
+//  Copyright © 2018 Young. All rights reserved.
+//
+
+#ifndef ImageProcess_prefix_h
+#define ImageProcess_prefix_h
+
+#ifdef __cplusplus
+#import <opencv2/opencv.hpp>
+#endif
+
+
+#endif /* ImageProcess_prefix_h */
