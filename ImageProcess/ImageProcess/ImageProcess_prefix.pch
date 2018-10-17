@@ -13,5 +13,11 @@
 #import <opencv2/opencv.hpp>
 #endif
 
+#import <Masonry.h>
+
+
+#define HEX_COLOR_ALPHA(_HEX_,a) [UIColor colorWithRed:((float)((_HEX_ & 0xFF0000) >> 16))/255.0 green:((float)((_HEX_ & 0xFF00) >> 8))/255.0 blue:((float)(_HEX_ & 0xFF))/255.0 alpha:a]
+
+#define HEX_COLOR(_HEX_) HEX_COLOR_ALPHA(_HEX_, 1.0)
 
 #endif /* ImageProcess_prefix_h */
