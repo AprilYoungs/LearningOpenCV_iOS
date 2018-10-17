@@ -27,7 +27,7 @@
 {
     if (_filters)
         return _filters;
-    _filters = @[@"Canny", @"Reverse", @"GaussianBlur", @"Original"];
+    _filters = @[@"Canny", @"Reverse", @"GaussianBlur", @"Crop rect", @"Horror Crop", @"Sobel", @"K-means", @"Original"];
     return _filters;
 }
 
@@ -50,7 +50,7 @@
     
     
     self.videoCamera = [[CvVideoCamera alloc]initWithParentView:self.imageView];
-    self.videoCamera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionFront;
+    self.videoCamera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionBack;
     self.videoCamera.defaultAVCaptureSessionPreset = AVCaptureSessionPresetHigh;
     self.videoCamera.defaultAVCaptureVideoOrientation = AVCaptureVideoOrientationPortrait;
     self.videoCamera.defaultFPS = 30;
@@ -73,7 +73,7 @@
             cv::Mat canny;
             cv::Canny(gray, canny, 50, 110);
             //    canny = 255 - canny;
-            cv::cvtColor(canny, image, cv::COLOR_GRAY2BGRA);
+            cv::cvtColor(canny, image, cv::COLOR_GRAY2RGBA);
         }
             break;
         case 1: /** Reverse */
@@ -92,6 +92,67 @@
         {
             cv::Size ksize(25,25);
             cv::GaussianBlur(image, image, ksize, 0);
+        }
+            break;
+        case 3: /** Crop rect */
+        {
+            CGFloat scale = 9.0/16;
+            CGFloat x = image.cols * 0.2;
+            CGFloat width = image.cols * 0.5;
+            cv::Mat image_copy = cv::Mat(image, cv::Rect(x, x/scale, width, width/scale));
+            image = image_copy.clone();
+            cv::cvtColor(image, image, cv::COLOR_BGR2RGB);
+        }
+            break;
+        case 4: /** Horror Crop */
+        {
+            CGFloat scale = 9.0/16;
+            CGFloat x = image.cols * 0.2;
+            CGFloat width = image.cols * 0.5;
+            cv::Mat image_copy = cv::Mat(image, cv::Rect(x, x/scale, width, width/scale+100));
+            image = image_copy.clone();
+        }
+            break;
+        case 5: /** sobel */
+        {
+            cv::Mat kernel = (cv::Mat_<int>(3,3) <<
+                              -2,-2,-2,
+                              0,0,0,
+                              2,2,2);
+            kernel = kernel.t()+kernel;
+            cv::filter2D(image, image, -1, kernel);
+            cv::cvtColor(image, image, cv::COLOR_BGR2GRAY);
+            cv::cvtColor(image, image, cv::COLOR_GRAY2BGR);
+        }
+            break;
+        case 6: /** k-means */
+        {
+            
+            cv::Mat lineImage(image.rows*image.cols, 3, CV_32F);
+            for (int y=0; y<image.rows; y++)
+                for(int x=0; x<image.cols; x++)
+                    for(int z=0; z<3; z++)
+                    {
+                        lineImage.at<float>(y + x*image.rows, z) = image.at<cv::Vec3b>(y,x)[z];
+                    }
+            
+            cv::TermCriteria criteria(cv::TermCriteria::MAX_ITER+cv::TermCriteria::EPS, 2, 0.5);
+            cv::Mat bestLabels;
+            cv::Mat centers;
+            
+            cv::kmeans(lineImage, 3, bestLabels, criteria, 10, cv::KMEANS_PP_CENTERS, centers);
+            
+            cv::Mat new_image(image.size(), image.type());
+            for(int y=0; y<image.rows; y++)
+                for(int x=0; x<image.cols; x++)
+                {
+                    int cluster_idx = bestLabels.at<int>(y + x*image.rows,0);
+                    new_image.at<cv::Vec3b>(y,x)[0] = centers.at<float>(cluster_idx, 0);
+                    new_image.at<cv::Vec3b>(y,x)[1] = centers.at<float>(cluster_idx, 1);
+                    new_image.at<cv::Vec3b>(y,x)[2] = centers.at<float>(cluster_idx, 2);
+                }
+            
+            cv::cvtColor(new_image, image, cv::COLOR_BGR2RGB);
         }
             break;
         default:
