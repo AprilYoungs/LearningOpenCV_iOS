@@ -50,14 +50,14 @@ If everything's fine, a few minutes later you will get /<my_working_directory>/i
 ## ImageProcess
 ![](./images/recoder.gif)
 #### canny
-![](./images/canny.png)
+<img style="width:300px;" src="./images/canny.png">
 #### canny white
-![](./images/canny_white.png)
+<img style="width:300px;" src="./images/canny_white.png">
 #### gaussian blur
-![](./images/gaussian_blur.png)
+<img style="width:300px;" src="./images/gaussian_blur.png">
 #### horror crop
-![](./images/horror_crop.png)
+<img style="width:300px;" src="./images/horror_crop.png">
 #### reverse
-![](./images/reverse.png)
+<img style="width:300px;" src="./images/reverse.png">
 #### sobel
-![](./images/sobel.png)
+<img style="width:300px;" src="./images/sobel.png">
