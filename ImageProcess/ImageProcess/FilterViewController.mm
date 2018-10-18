@@ -15,6 +15,7 @@
 @interface FilterViewController ()
 <CvVideoCameraDelegate>
 @property (strong, nonatomic) UIImageView *imageView;
+@property (strong, nonatomic) UIButton *btnSwitch;
 @property (strong, nonatomic) KMPickerController *pickerView;
 @property (strong, nonatomic) CvVideoCamera *videoCamera;
 @property (assign, nonatomic) NSUInteger currentIndex;
@@ -27,7 +28,7 @@
 {
     if (_filters)
         return _filters;
-    _filters = @[@"Canny", @"Reverse", @"GaussianBlur", @"Crop rect", @"Horror Crop", @"Sobel", @"K-means", @"Original"];
+    _filters = @[@"Canny", @"Canny white", @"Reverse", @"GaussianBlur", @"Crop rect", @"Horror Crop", @"Sobel", @"K-means", @"Original"];
     return _filters;
 }
 
@@ -48,6 +49,15 @@
     [self.view addSubview:self.imageView];
     self.imageView.frame = self.view.bounds;
     
+    self.btnSwitch = [[UIButton alloc] init];
+    [self.btnSwitch setTitle:@"switch" forState:UIControlStateNormal];
+    [self.btnSwitch addTarget:self action:@selector(switchCameras) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.btnSwitch];
+    [self.btnSwitch mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(0);
+        make.top.mas_equalTo(self.mas_topLayoutGuideTop).mas_offset(50);
+        make.size.mas_equalTo(CGSizeMake(80, 30));
+    }];
     
     self.videoCamera = [[CvVideoCamera alloc]initWithParentView:self.imageView];
     self.videoCamera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionBack;
@@ -58,6 +68,14 @@
     
     self.videoCamera.delegate = self;
     
+}
+
+- (void)switchCameras
+{
+    /** switch to another side */
+    self.videoCamera.defaultAVCaptureDevicePosition = self.videoCamera.defaultAVCaptureDevicePosition == AVCaptureDevicePositionBack ? AVCaptureDevicePositionFront: AVCaptureDevicePositionBack;
+    [self.videoCamera stop];
+    [self.videoCamera start];
 }
 
 //MARK: - CvVideoCameraDelegate
@@ -76,7 +94,18 @@
             cv::cvtColor(canny, image, cv::COLOR_GRAY2RGBA);
         }
             break;
-        case 1: /** Reverse */
+        case 1: /** canny */
+        {
+            cv::Mat gray;
+            cv::cvtColor(image, gray, cv::COLOR_BGR2GRAY);
+            cv::Mat canny;
+            cv::Canny(gray, canny, 50, 110);
+            /** reverse color,make it a white background */
+            canny = 255 - canny;
+            cv::cvtColor(canny, image, cv::COLOR_GRAY2RGBA);
+        }
+            break;
+        case 2: /** Reverse */
         {
             cv::Mat image_copy;
             cv::cvtColor(image, image_copy, cv::COLOR_BGR2GRAY);
@@ -88,13 +117,13 @@
             cv::cvtColor(bgr, image, cv::COLOR_BGR2BGRA);
         }
             break;
-        case 2: /** GaussianBlur */
+        case 3: /** GaussianBlur */
         {
             cv::Size ksize(25,25);
             cv::GaussianBlur(image, image, ksize, 0);
         }
             break;
-        case 3: /** Crop rect */
+        case 4: /** Crop rect */
         {
             CGFloat scale = 9.0/16;
             CGFloat x = image.cols * 0.2;
@@ -104,7 +133,7 @@
             cv::cvtColor(image, image, cv::COLOR_BGR2RGB);
         }
             break;
-        case 4: /** Horror Crop */
+        case 5: /** Horror Crop */
         {
             CGFloat scale = 9.0/16;
             CGFloat x = image.cols * 0.2;
@@ -113,7 +142,7 @@
             image = image_copy.clone();
         }
             break;
-        case 5: /** sobel */
+        case 6: /** sobel */
         {
             cv::Mat kernel = (cv::Mat_<int>(3,3) <<
                               -2,-2,-2,
@@ -125,7 +154,7 @@
             cv::cvtColor(image, image, cv::COLOR_GRAY2BGR);
         }
             break;
-        case 6: /** k-means */
+        case 7: /** k-means */
         {
             
             cv::Mat lineImage(image.rows*image.cols, 3, CV_32F);
