@@ -47,5 +47,17 @@ If everything's fine, a few minutes later you will get /<my_working_directory>/i
   * Foundation
 ![](./images/screen_shoot.png)
 
-## ImageProcess 
+## ImageProcess
 ![](./images/recoder.gif)
+#### canny
+![](./images/canny.png)
+#### canny white
+![](./images/canny_white.png)
+#### gaussian blur
+![](./images/gaussian_blur.png)
+#### horror crop
+![](./images/horror_crop.png)
+#### reverse
+![](./images/reverse.png)
+#### sobel
+![](./images/sobel.png)
