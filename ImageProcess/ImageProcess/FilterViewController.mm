@@ -7,10 +7,13 @@
 //
 
 #import "FilterViewController.h"
+#import <iostream>
 #import <opencv2/videoio/cap_ios.h>
 #import "CVTool.hh"
 
 #import "KMPickerController.h"
+
+using namespace std;
 
 @interface FilterViewController ()
 <CvVideoCameraDelegate>
@@ -34,7 +37,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor cyanColor];
     
     [self setupUI];
     
@@ -47,7 +49,10 @@
     self.imageView.image = [UIImage imageNamed:@"Screen"];
     self.imageView.contentMode = UIViewContentModeScaleAspectFit;
     [self.view addSubview:self.imageView];
-    self.imageView.frame = self.view.bounds;
+    CGFloat width = [UIScreen mainScreen].bounds.size.width;
+    CGFloat height = [UIScreen mainScreen].bounds.size.height;
+    self.imageView.frame = CGRectMake(0, 0, width, width/9*16);
+    self.imageView.center = CGPointMake(width/2, height/2);
     
     self.btnSwitch = [[UIButton alloc] init];
     [self.btnSwitch setTitle:@"switch" forState:UIControlStateNormal];
@@ -55,7 +60,7 @@
     [self.view addSubview:self.btnSwitch];
     [self.btnSwitch mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(0);
-        make.top.mas_equalTo(self.mas_topLayoutGuideTop).mas_offset(50);
+        make.top.mas_equalTo(self.mas_topLayoutGuideTop).mas_offset(30);
         make.size.mas_equalTo(CGSizeMake(80, 30));
     }];
     
@@ -156,7 +161,8 @@
             break;
         case 7: /** k-means */
         {
-            
+            /** convert 4 channel data to 3 channel */
+            cv::cvtColor(image, image, cv::COLOR_BGRA2BGR);
             cv::Mat lineImage(image.rows*image.cols, 3, CV_32F);
             for (int y=0; y<image.rows; y++)
                 for(int x=0; x<image.cols; x++)
@@ -169,8 +175,7 @@
             cv::Mat bestLabels;
             cv::Mat centers;
             
-            cv::kmeans(lineImage, 3, bestLabels, criteria, 10, cv::KMEANS_PP_CENTERS, centers);
-            
+            cv::kmeans(lineImage, 6, bestLabels, criteria, 10, cv::KMEANS_PP_CENTERS, centers);
             cv::Mat new_image(image.size(), image.type());
             for(int y=0; y<image.rows; y++)
                 for(int x=0; x<image.cols; x++)
