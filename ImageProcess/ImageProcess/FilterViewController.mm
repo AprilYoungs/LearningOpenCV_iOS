@@ -12,17 +12,20 @@
 #import "CVTool.hh"
 
 #import "KMPickerController.h"
+#import <Photos/Photos.h>
 
 using namespace std;
 
 @interface FilterViewController ()
 <CvVideoCameraDelegate>
 @property (strong, nonatomic) UIImageView *imageView;
+@property (strong, nonatomic) UIImage *currentImage;
 @property (strong, nonatomic) UIButton *btnSwitch;
+@property (strong, nonatomic) UIButton *btnSave;
 @property (strong, nonatomic) KMPickerController *pickerView;
 @property (strong, nonatomic) CvVideoCamera *videoCamera;
 @property (assign, nonatomic) NSUInteger currentIndex;
-@property (strong, nonatomic)  NSArray<NSString *> *filters;
+@property (strong, nonatomic) NSArray<NSString *> *filters;
 @end
 
 @implementation FilterViewController
@@ -55,13 +58,22 @@ using namespace std;
     self.imageView.center = CGPointMake(width/2, height/2);
     
     self.btnSwitch = [[UIButton alloc] init];
-    [self.btnSwitch setTitle:@"switch" forState:UIControlStateNormal];
+    [self.btnSwitch setImage:[UIImage imageNamed:@"switch_camera"] forState:UIControlStateNormal];
     [self.btnSwitch addTarget:self action:@selector(switchCameras) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.btnSwitch];
     [self.btnSwitch mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(0);
+        make.right.mas_equalTo(-15);
         make.top.mas_equalTo(self.mas_topLayoutGuideTop).mas_offset(30);
-        make.size.mas_equalTo(CGSizeMake(80, 30));
+    }];
+    
+    self.btnSave = [[UIButton alloc] init];
+    [self.btnSave setImage:[UIImage imageNamed:@"shoot_highlight"] forState:UIControlStateHighlighted];
+    [self.btnSave setImage:[UIImage imageNamed:@"shoot"] forState:UIControlStateNormal];
+    [self.btnSave addTarget:self action:@selector(saveImage) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.btnSave];
+    [self.btnSave mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(0);
+        make.bottom.mas_equalTo(-64);
     }];
     
     self.videoCamera = [[CvVideoCamera alloc]initWithParentView:self.imageView];
@@ -83,11 +95,37 @@ using namespace std;
     [self.videoCamera start];
 }
 
+- (void)saveImage
+{
+
+//    if ([self.videoCamera running])
+//    {
+//        [self.videoCamera stop];
+//    }
+//    else
+//    {
+//        [self.videoCamera start];
+//    }
+    
+//    self.imageView.image = self.currentImage;
+    
+    
+    
+    [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+
+        __unused PHAssetChangeRequest *req = [PHAssetChangeRequest creationRequestForAssetFromImage:self.currentImage];
+
+    } completionHandler:^(BOOL success, NSError * _Nullable error) {
+        NSLog(@"success = %d, error = %@", success, error);
+//        [self.videoCamera start];
+    }];
+}
+
+
 //MARK: - CvVideoCameraDelegate
 #ifdef __cplusplus
 -(void)processImage:(cv::Mat &)image
 {
-    
     switch (self.currentIndex) {
         case 0: /** canny */
         {
@@ -193,9 +231,12 @@ using namespace std;
             break;
     }
     
-    
     dispatch_async(dispatch_get_main_queue(), ^{
-        self.imageView.image = [CVTool imageFromCVMat:image];
+        
+        self.currentImage = [CVTool imageFromCVMat:image];
+        
+        if (self.currentImage != nil)
+            self.imageView.image = self.currentImage;
     });
 }
 

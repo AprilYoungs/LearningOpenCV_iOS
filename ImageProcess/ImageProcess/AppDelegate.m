@@ -22,7 +22,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
     
-    self.window.rootViewController = [[FilterViewController alloc] init];
+    self.window.rootViewController = [[CameraController alloc] init];
     [self.window makeKeyAndVisible];
     
     return YES;

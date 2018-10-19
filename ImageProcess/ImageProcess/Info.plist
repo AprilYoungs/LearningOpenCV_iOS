@@ -39,5 +39,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>I want to save the awsome photo</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>You want to make a awsome new photo</string>
 </dict>
 </plist>

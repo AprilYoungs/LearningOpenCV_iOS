@@ -8,13 +8,14 @@
 
 #import "CameraController.h"
 #import "CVTool.hh"
+#import <Photos/Photos.h>
 
 @interface CameraController ()
 <AVCaptureVideoDataOutputSampleBufferDelegate
 >
 @property (nonatomic,strong)AVCaptureSession *session;
 @property (nonatomic,strong)UIImageView *imageView;
-
+@property (strong, nonatomic) UIButton *btnSave;
 @property (nonatomic,strong)AVCaptureDevice *device;
 @end
 
@@ -27,8 +28,31 @@
     [self.view insertSubview:self.imageView atIndex:0];
     [self setupCaptureSession];
     
+    
+    self.btnSave = [[UIButton alloc] init];
+    [self.btnSave setImage:[UIImage imageNamed:@"shoot_highlight"] forState:UIControlStateHighlighted];
+    [self.btnSave setImage:[UIImage imageNamed:@"shoot"] forState:UIControlStateNormal];
+    [self.btnSave addTarget:self action:@selector(saveImage) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.btnSave];
+    [self.btnSave mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(0);
+        make.bottom.mas_equalTo(-64);
+    }];
+    
 }
 
+- (void)saveImage
+{
+    UIImage *image = self.imageView.image;
+    [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+        
+        __unused PHAssetChangeRequest *req = [PHAssetChangeRequest creationRequestForAssetFromImage:image];
+        
+    } completionHandler:^(BOOL success, NSError * _Nullable error) {
+        NSLog(@"success = %d, error = %@", success, error);
+        //        [self.videoCamera start];
+    }];
+}
 
 // Create and configure a capture session and start it running
 - (void)setupCaptureSession
@@ -116,8 +140,8 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
      1.convert to gray then the mat lose 3 channel
      2.convert to RGBA then iOS can display,however,
      the four channel have the same value,so it's gray now*/
-    cv::cvtColor(blur, blur, cv::COLOR_RGBA2GRAY);
-    cv::cvtColor(blur, blur, cv::COLOR_GRAY2RGBA);
+//    cv::cvtColor(blur, blur, cv::COLOR_RGBA2GRAY);
+//    cv::cvtColor(blur, blur, cv::COLOR_GRAY2RGBA);
     
     //TODO: construct my mat
     // ?? Gray Images? why not
@@ -126,6 +150,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     
     
     dispatch_async(dispatch_get_main_queue(), ^{
+//        self.imageView.image = image;
         self.imageView.image = [CVTool imageFromCVMat:blur];
     });
 }

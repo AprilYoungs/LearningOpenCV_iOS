@@ -79,7 +79,7 @@ using namespace cv;
                                         8,   //bits per component
                                         8*cvMat.elemSize(),  //bits per pixel
                                         /** why? */
-                                        cvMat.step[0]-32, //bytesPerRow
+                                        cvMat.step[0], //bytesPerRow
                                         colorSpace,     //colorspace
                                         kCGImageAlphaNoneSkipLast|
                                         kCGBitmapByteOrderDefault, // bitmap info
