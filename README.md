@@ -58,9 +58,6 @@ If everything's fine, a few minutes later you will get /<my_working_directory>/i
 #### gaussian blur
 <img style="width:200px;" src="./images/gaussian_blur.png">
 
-#### horror crop
-<img style="width:200px;" src="./images/horror_crop.png">
-
 #### reverse
 <img style="width:200px;" src="./images/reverse.png">
 
