@@ -9,24 +9,55 @@
 #import "CameraController.h"
 #import "CVTool.hh"
 #import <Photos/Photos.h>
+#import "KMPickerController.h"
 
 @interface CameraController ()
 <AVCaptureVideoDataOutputSampleBufferDelegate
 >
 @property (nonatomic,strong)AVCaptureSession *session;
+@property (nonatomic,strong)AVCaptureDevice *device;
+@property (assign, nonatomic) BOOL backCamera;
+@property (assign, nonatomic) NSUInteger currentIndex;
+
 @property (nonatomic,strong)UIImageView *imageView;
 @property (strong, nonatomic) UIButton *btnSave;
-@property (nonatomic,strong)AVCaptureDevice *device;
+@property (strong, nonatomic) UIButton *btnSwitch;
+@property (strong, nonatomic) KMPickerController *pickerView;
+@property (strong, nonatomic) NSArray<NSString *> *filters;
+
 @end
 
 @implementation CameraController
 
+-(NSArray<NSString *> *)filters
+{
+    if (_filters)
+        return _filters;
+    _filters = @[@"Canny", @"Canny white", @"Reverse", @"GaussianBlur", @"Sobel", @"K-means", @"Original"];
+    return _filters;
+}
+
 - (void)viewDidLoad
 {
-    self.imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
-    self.imageView.contentMode = UIViewContentModeScaleAspectFit;
-    [self.view insertSubview:self.imageView atIndex:0];
+    [self setupUI];
     [self setupCaptureSession];
+}
+
+- (void)setupUI
+{
+    self.imageView = [[UIImageView alloc] init];
+    self.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    [self.view addSubview:self.imageView];
+    self.imageView.frame = self.view.bounds;
+    
+    self.btnSwitch = [[UIButton alloc] init];
+    [self.btnSwitch setImage:[UIImage imageNamed:@"switch_camera"] forState:UIControlStateNormal];
+    [self.btnSwitch addTarget:self action:@selector(switchCameras) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.btnSwitch];
+    [self.btnSwitch mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(-15);
+        make.top.mas_equalTo(self.mas_topLayoutGuideTop).mas_offset(30);
+    }];
     
     
     self.btnSave = [[UIButton alloc] init];
@@ -41,6 +72,12 @@
     
 }
 
+- (void)switchCameras
+{
+    [self.session stopRunning];
+    [self setupCaptureSession];
+}
+
 - (void)saveImage
 {
     UIImage *image = self.imageView.image;
@@ -50,7 +87,6 @@
         
     } completionHandler:^(BOOL success, NSError * _Nullable error) {
         NSLog(@"success = %d, error = %@", success, error);
-        //        [self.videoCamera start];
     }];
 }
 
@@ -68,8 +104,9 @@
     session.sessionPreset = AVCaptureSessionPresetHigh;
 
     // Find a suitable AVCaptureDevice
-    AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithDeviceType:AVCaptureDeviceTypeBuiltInWideAngleCamera mediaType:AVMediaTypeVideo position:AVCaptureDevicePositionFront];
-    
+    self.backCamera = !self.backCamera;
+    AVCaptureDevicePosition position = self.backCamera ?AVCaptureDevicePositionBack: AVCaptureDevicePositionFront;
+    AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithDeviceType:AVCaptureDeviceTypeBuiltInWideAngleCamera mediaType:AVMediaTypeVideo position:position];
     
     [self setDevice:device];
     
@@ -109,16 +146,8 @@
     // Start the session running to start the flow of data
     [session startRunning];
     
-    
-//    AVCaptureVideoPreviewLayer *previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:session];
-//    previewLayer.frame = self.view.frame;
-//    [self.view.layer addSublayer:previewLayer];
-    
-    
     // Assign session to an ivar.
     [self setSession:session];
-    
-    
 }
 
 // Delegate routine that is called when a sample buffer was written
@@ -130,29 +159,48 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     // Create a UIImage from the sample buffer data
     UIImage *image = [CameraController imageFromSampleBuffer:sampleBuffer];
     
-    cv::Mat cvImage = [CVTool cvMatFromUIImage:image];
     
-    cv::Size ksize(25,25);
-    cv::Mat blur;
-    cv::GaussianBlur(cvImage, blur, ksize, 0);
+    switch (self.currentIndex) {
+        case 0:
+            image = [CVTool processImage:image cvEffect:kCVCanny];
+            break;
+        case 1:
+            image = [CVTool processImage:image cvEffect:kCVCannyWhite];
+            break;
+        case 2:
+            image = [CVTool processImage:image cvEffect:kCVReverse];
+            break;
+        case 3:
+            image = [CVTool processImage:image cvEffect:kCVGaussianBlur];
+            break;
+        case 4:
+            image = [CVTool processImage:image cvEffect:kCVSobel];
+            break;
+        case 5:
+            image = [CVTool processImage:image cvEffect:kCVK_Means];
+            break;
+        default:
+            break;
+    }
     
-    /** convert the image to gray,
-     1.convert to gray then the mat lose 3 channel
-     2.convert to RGBA then iOS can display,however,
-     the four channel have the same value,so it's gray now*/
-//    cv::cvtColor(blur, blur, cv::COLOR_RGBA2GRAY);
-//    cv::cvtColor(blur, blur, cv::COLOR_GRAY2RGBA);
-    
-    //TODO: construct my mat
-    // ?? Gray Images? why not
-//    cv::InputArray kernel(cv::Scalar(0,0,0));
-//    cv::filter2D(blur, blur, -1,kernel);
-    
-    
+    if (!self.backCamera)
+    {
+        /** flip the image for front camera */
+        image = [UIImage imageWithCGImage:image.CGImage scale:1 orientation:UIImageOrientationUpMirrored];
+    }
     dispatch_async(dispatch_get_main_queue(), ^{
-//        self.imageView.image = image;
-        self.imageView.image = [CVTool imageFromCVMat:blur];
+        self.imageView.image = image;
     });
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    self.pickerView = [KMPickerController pickerViewWithSourceView:self.view andDataArr:self.filters callback:^(NSUInteger index) {
+        self.currentIndex = index;
+    }];
+    self.pickerView.defaultIndex = self.currentIndex;
+    
+    [self presentViewController:self.pickerView animated:YES completion:nil];
 }
 
 // Create a UIImage from sample buffer data
@@ -180,21 +228,18 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
                                                  bytesPerRow, colorSpace, kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedFirst);
     // Create a Quartz image from the pixel data in the bitmap graphics context
     CGImageRef quartzImage = CGBitmapContextCreateImage(context);
-    // Unlock the pixel buffer
-    CVPixelBufferUnlockBaseAddress(imageBuffer,0);
-    
-    // Free up the context and color space
-    CGContextRelease(context);
-    CGColorSpaceRelease(colorSpace);
-    
     // Create an image object from the Quartz image
     UIImage *image = [UIImage imageWithCGImage:quartzImage];
     
+    // Unlock the pixel buffer
+    CVPixelBufferUnlockBaseAddress(imageBuffer,0);
+    // Free up the context and color space
+    CGContextRelease(context);
+    CGColorSpaceRelease(colorSpace);
     // Release the Quartz image
     CGImageRelease(quartzImage);
     
     return (image);
 }
-
 
 @end

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		115BAA99217D6C67002B76E3 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 115BAA98217D6C67002B76E3 /* opencv2.framework */; };
 		6F22D17721758F240012CA58 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F22D17621758F240012CA58 /* AppDelegate.m */; };
-		6F22D17F21758F250012CA58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F22D17E21758F250012CA58 /* Assets.xcassets */; };
 		6F22D18221758F250012CA58 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F22D18021758F250012CA58 /* LaunchScreen.storyboard */; };
 		6F22D18521758F250012CA58 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F22D18421758F250012CA58 /* main.m */; };
 		6F22D18D21758F5D0012CA58 /* FilterViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6F22D18C21758F5D0012CA58 /* FilterViewController.mm */; };
@@ -27,6 +26,7 @@
 		6F22D1B62175E3B20012CA58 /* CameraController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6F22D1B42175E3B10012CA58 /* CameraController.mm */; };
 		6F22D1B92176CF160012CA58 /* KMPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F22D1B82176CF160012CA58 /* KMPickerController.m */; };
 		6F8F9B312179CAE800A71113 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F8F9B302179CAE800A71113 /* Photos.framework */; };
+		6FDA767F217DB76C00638A88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FDA767E217DB76C00638A88 /* Assets.xcassets */; };
 		D3263DF2DFC2F356C8FCC338 /* libPods-ImageProcess.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E775FC56ADDA7A134CA4C2C6 /* libPods-ImageProcess.a */; };
 /* End PBXBuildFile section */
 
@@ -35,7 +35,6 @@
 		6F22D17221758F240012CA58 /* ImageProcess.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageProcess.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F22D17521758F240012CA58 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6F22D17621758F240012CA58 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		6F22D17E21758F250012CA58 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6F22D18121758F250012CA58 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6F22D18321758F250012CA58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6F22D18421758F250012CA58 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -59,6 +58,7 @@
 		6F22D1B82176CF160012CA58 /* KMPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMPickerController.m; sourceTree = "<group>"; };
 		6F2657432179C77C004B18D0 /* ImageProcess_prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageProcess_prefix.pch; sourceTree = "<group>"; };
 		6F8F9B302179CAE800A71113 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		6FDA767E217DB76C00638A88 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		868F8578461A805C93ED14C7 /* Pods-ImageProcess.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageProcess.release.xcconfig"; path = "Pods/Target Support Files/Pods-ImageProcess/Pods-ImageProcess.release.xcconfig"; sourceTree = "<group>"; };
 		A861B17C52DE0A29C89872B1 /* Pods-ImageProcess.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageProcess.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ImageProcess/Pods-ImageProcess.debug.xcconfig"; sourceTree = "<group>"; };
 		E775FC56ADDA7A134CA4C2C6 /* libPods-ImageProcess.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ImageProcess.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -119,11 +119,11 @@
 				6F22D1B22175E17C0012CA58 /* CVTool.mm */,
 				6F22D1B72176CF160012CA58 /* KMPickerController.h */,
 				6F22D1B82176CF160012CA58 /* KMPickerController.m */,
-				6F22D17E21758F250012CA58 /* Assets.xcassets */,
 				6F22D18021758F250012CA58 /* LaunchScreen.storyboard */,
 				6F22D18321758F250012CA58 /* Info.plist */,
 				6F22D18421758F250012CA58 /* main.m */,
 				6F2657432179C77C004B18D0 /* ImageProcess_prefix.pch */,
+				6FDA767E217DB76C00638A88 /* Assets.xcassets */,
 			);
 			path = ImageProcess;
 			sourceTree = "<group>";
@@ -216,8 +216,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6FDA767F217DB76C00638A88 /* Assets.xcassets in Resources */,
 				6F22D18221758F250012CA58 /* LaunchScreen.storyboard in Resources */,
-				6F22D17F21758F250012CA58 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

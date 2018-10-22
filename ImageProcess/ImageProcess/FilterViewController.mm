@@ -126,44 +126,26 @@ using namespace std;
 #ifdef __cplusplus
 -(void)processImage:(cv::Mat &)image
 {
+
     switch (self.currentIndex) {
         case 0: /** canny */
         {
-            cv::Mat gray;
-            cv::cvtColor(image, gray, cv::COLOR_BGR2GRAY);
-            cv::Mat canny;
-            cv::Canny(gray, canny, 50, 110);
-            //    canny = 255 - canny;
-            cv::cvtColor(canny, image, cv::COLOR_GRAY2RGBA);
+            image = [CVTool processCVImage:image cvEffect:kCVCanny];
         }
             break;
-        case 1: /** canny */
+        case 1: /** canny white */
         {
-            cv::Mat gray;
-            cv::cvtColor(image, gray, cv::COLOR_BGR2GRAY);
-            cv::Mat canny;
-            cv::Canny(gray, canny, 50, 110);
-            /** reverse color,make it a white background */
-            canny = 255 - canny;
-            cv::cvtColor(canny, image, cv::COLOR_GRAY2RGBA);
+            image = [CVTool processCVImage:image cvEffect:kCVCannyWhite];
         }
             break;
         case 2: /** Reverse */
         {
-            cv::Mat image_copy;
-            cv::cvtColor(image, image_copy, cv::COLOR_BGR2GRAY);
-            /** reverse color */
-            cv::bitwise_not(image_copy, image_copy);
-            cv::Mat bgr;
-            cv::cvtColor(image_copy, bgr, cv::COLOR_GRAY2BGR);
-            /** Only accept three or four channel */
-            cv::cvtColor(bgr, image, cv::COLOR_BGR2BGRA);
+            image = [CVTool processCVImage:image cvEffect:kCVReverse];
         }
             break;
         case 3: /** GaussianBlur */
         {
-            cv::Size ksize(25,25);
-            cv::GaussianBlur(image, image, ksize, 0);
+            image = [CVTool processCVImage:image cvEffect:kCVGaussianBlur];
         }
             break;
         case 4: /** Crop rect */
@@ -187,53 +169,20 @@ using namespace std;
             break;
         case 6: /** sobel */
         {
-            cv::Mat kernel = (cv::Mat_<int>(3,3) <<
-                              -2,-2,-2,
-                              0,0,0,
-                              2,2,2);
-            kernel = kernel.t()+kernel;
-            cv::filter2D(image, image, -1, kernel);
-            cv::cvtColor(image, image, cv::COLOR_BGR2GRAY);
-            cv::cvtColor(image, image, cv::COLOR_GRAY2BGR);
+            image = [CVTool processCVImage:image cvEffect:kCVSobel];
         }
             break;
         case 7: /** k-means */
         {
-            /** convert 4 channel data to 3 channel */
-            cv::cvtColor(image, image, cv::COLOR_BGRA2BGR);
-            cv::Mat lineImage(image.rows*image.cols, 3, CV_32F);
-            for (int y=0; y<image.rows; y++)
-                for(int x=0; x<image.cols; x++)
-                    for(int z=0; z<3; z++)
-                    {
-                        lineImage.at<float>(y + x*image.rows, z) = image.at<cv::Vec3b>(y,x)[z];
-                    }
-            
-            cv::TermCriteria criteria(cv::TermCriteria::MAX_ITER+cv::TermCriteria::EPS, 2, 0.5);
-            cv::Mat bestLabels;
-            cv::Mat centers;
-            
-            cv::kmeans(lineImage, 6, bestLabels, criteria, 10, cv::KMEANS_PP_CENTERS, centers);
-            cv::Mat new_image(image.size(), image.type());
-            for(int y=0; y<image.rows; y++)
-                for(int x=0; x<image.cols; x++)
-                {
-                    int cluster_idx = bestLabels.at<int>(y + x*image.rows,0);
-                    new_image.at<cv::Vec3b>(y,x)[0] = centers.at<float>(cluster_idx, 0);
-                    new_image.at<cv::Vec3b>(y,x)[1] = centers.at<float>(cluster_idx, 1);
-                    new_image.at<cv::Vec3b>(y,x)[2] = centers.at<float>(cluster_idx, 2);
-                }
-            
-            cv::cvtColor(new_image, image, cv::COLOR_BGR2RGB);
+            image = [CVTool processCVImage:image cvEffect:kCVK_Means];
         }
             break;
         default:
             break;
     }
     
+    self.currentImage = [CVTool imageFromCVMat:image];
     dispatch_async(dispatch_get_main_queue(), ^{
-        
-        self.currentImage = [CVTool imageFromCVMat:image];
         
         if (self.currentImage != nil)
             self.imageView.image = self.currentImage;
