@@ -63,6 +63,7 @@
     self.btnSave = [[UIButton alloc] init];
     [self.btnSave setImage:[UIImage imageNamed:@"shoot_highlight"] forState:UIControlStateHighlighted];
     [self.btnSave setImage:[UIImage imageNamed:@"shoot"] forState:UIControlStateNormal];
+    [self.btnSave setImage:[UIImage imageNamed:@"shooted"] forState:UIControlStateSelected];
     [self.btnSave addTarget:self action:@selector(saveImage) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.btnSave];
     [self.btnSave mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -75,18 +76,32 @@
 - (void)switchCameras
 {
     [self.session stopRunning];
+    self.backCamera = !self.backCamera;
     [self setupCaptureSession];
 }
 
 - (void)saveImage
 {
+    /** restart session */
+    if (self.btnSave.selected)
+    {
+        [self setupCaptureSession];
+        self.btnSave.selected = NO;
+        return;
+    }
+    
+    /** stop session, pause view */
     UIImage *image = self.imageView.image;
+    [self.session stopRunning];
     [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
         
         __unused PHAssetChangeRequest *req = [PHAssetChangeRequest creationRequestForAssetFromImage:image];
         
     } completionHandler:^(BOOL success, NSError * _Nullable error) {
         NSLog(@"success = %d, error = %@", success, error);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.btnSave.selected = YES;
+        });
     }];
 }
 
@@ -104,7 +119,6 @@
     session.sessionPreset = AVCaptureSessionPresetHigh;
 
     // Find a suitable AVCaptureDevice
-    self.backCamera = !self.backCamera;
     AVCaptureDevicePosition position = self.backCamera ?AVCaptureDevicePositionBack: AVCaptureDevicePositionFront;
     AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithDeviceType:AVCaptureDeviceTypeBuiltInWideAngleCamera mediaType:AVMediaTypeVideo position:position];
     

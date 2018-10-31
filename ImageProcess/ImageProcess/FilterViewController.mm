@@ -4,7 +4,7 @@
 //
 //  Created by Young on 10/16/18.
 //  Copyright © 2018 Young. All rights reserved.
-//
+//  With opencv encapsulate camera,can't save photo as expected
 
 #import "FilterViewController.h"
 #import <iostream>
