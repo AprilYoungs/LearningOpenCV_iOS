@@ -31,7 +31,7 @@ UIPopoverPresentationControllerDelegate>
 {
     if (_filters)
         return _filters;
-    _filters = @[@"Canny", @"Canny white", @"Reverse", @"GaussianBlur", @"Sobel", @"K-means"];
+    _filters = @[@"Original", @"Canny", @"Canny white", @"Reverse", @"GaussianBlur", @"Sobel", @"K-means"];
     return _filters;
 }
 
@@ -126,7 +126,8 @@ UIPopoverPresentationControllerDelegate>
 {
     // Create a UIImage from the sample buffer data
     UIImage *image = self.originalImage;
-    
+    /** original is the first place */
+    index -= 1;
     switch (index) {
         case 0:
             image = [CVTool processImage:image cvEffect:kCVCanny];
