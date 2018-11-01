@@ -7,6 +7,7 @@
 //
 
 #import "MenuViewController.h"
+#import "CameraController.h"
 
 @interface MenuViewController ()
 
@@ -14,10 +15,26 @@
 
 @implementation MenuViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    self.navigationController.navigationBarHidden = YES;
 }
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
+    
+}
+
+- (IBAction)chosePic:(id)sender {
+    
+}
+
+- (IBAction)shootingPhoto:(id)sender {
+    
+    [self.navigationController pushViewController:[[CameraController alloc] init] animated:YES];
+    
+}
 
 @end

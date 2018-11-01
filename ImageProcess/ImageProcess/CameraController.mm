@@ -22,6 +22,7 @@
 @property (nonatomic,strong)UIImageView *imageView;
 @property (strong, nonatomic) UIButton *btnSave;
 @property (strong, nonatomic) UIButton *btnSwitch;
+@property (strong, nonatomic) UIButton *btnFilter;
 @property (strong, nonatomic) KMPickerController *pickerView;
 @property (strong, nonatomic) NSArray<NSString *> *filters;
 
@@ -39,6 +40,8 @@
 
 - (void)viewDidLoad
 {
+    self.navigationController.navigationBarHidden = YES;
+    
     [self setupUI];
     [self setupCaptureSession];
 }
@@ -60,6 +63,11 @@
     }];
     
     
+    UIButton *switchBtn = [[UIButton alloc] init];
+    [switchBtn setImage:[UIImage imageNamed:@"switch_camera_black"] forState:UIControlStateNormal];
+    [switchBtn addTarget:self action:@selector(switchCameras) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:switchBtn];
+    
     self.btnSave = [[UIButton alloc] init];
     [self.btnSave setImage:[UIImage imageNamed:@"shoot_highlight"] forState:UIControlStateHighlighted];
     [self.btnSave setImage:[UIImage imageNamed:@"shoot"] forState:UIControlStateNormal];
@@ -67,10 +75,30 @@
     [self.btnSave addTarget:self action:@selector(saveImage) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.btnSave];
     [self.btnSave mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(100, 100));
         make.centerX.mas_equalTo(0);
         make.bottom.mas_equalTo(-64);
     }];
     
+    self.btnFilter = [[UIButton alloc] init];
+    [self.btnFilter setImage:[UIImage imageNamed:@"filter"] forState:UIControlStateNormal];
+    [self.btnFilter addTarget:self action:@selector(showFilters) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.btnFilter];
+    [self.btnFilter mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.btnSave.mas_centerY);
+        make.right.mas_equalTo(-20);
+        make.size.mas_equalTo(CGSizeMake(30, 30));
+    }];
+}
+
+- (void)showFilters
+{
+    self.pickerView = [KMPickerController pickerViewWithSourceView:self.btnFilter andDataArr:self.filters callback:^(NSUInteger index) {
+        self.currentIndex = index;
+    }];
+    self.pickerView.defaultIndex = self.currentIndex;
+    
+    [self presentViewController:self.pickerView animated:YES completion:nil];
 }
 
 - (void)switchCameras
@@ -209,12 +237,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    self.pickerView = [KMPickerController pickerViewWithSourceView:self.view andDataArr:self.filters callback:^(NSUInteger index) {
-        self.currentIndex = index;
-    }];
-    self.pickerView.defaultIndex = self.currentIndex;
-    
-    [self presentViewController:self.pickerView animated:YES completion:nil];
+    [self.navigationController setNavigationBarHidden:!self.navigationController.navigationBarHidden animated:YES];
 }
 
 // Create a UIImage from sample buffer data

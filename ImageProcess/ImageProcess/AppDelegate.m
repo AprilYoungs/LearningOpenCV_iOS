@@ -7,8 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "FilterViewController.h"
-#import "CameraController.h"
+#import "MenuViewController.h"
 
 @interface AppDelegate ()
 
@@ -22,7 +21,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
     
-    self.window.rootViewController = [[CameraController alloc] init];
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[MenuViewController alloc] init]];
     [self.window makeKeyAndVisible];
     
     return YES;

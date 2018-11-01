@@ -37,7 +37,7 @@ UIPopoverPresentationControllerDelegate>
         self.modalPresentationStyle = UIModalPresentationPopover;
         self.popoverPresentationController.delegate = self;
         self.popoverPresentationController.sourceView = sourceView;
-        self.popoverPresentationController.sourceRect = CGRectMake(sourceView.bounds.size.width/2, sourceView.bounds.size.height, 0, 0);
+        self.popoverPresentationController.sourceRect = CGRectMake(sourceView.bounds.size.width/2, 0, 0, 0);
     }
     return self;
 }
@@ -95,7 +95,7 @@ UIPopoverPresentationControllerDelegate>
 - (void)prepareForPopoverPresentation:(UIPopoverPresentationController *)popoverPresentationController
 {
     popoverPresentationController.backgroundColor = [UIColor whiteColor];
-    popoverPresentationController.permittedArrowDirections = UIPopoverArrowDirectionUp;
+    popoverPresentationController.permittedArrowDirections = UIPopoverArrowDirectionDown;
 }
 
 - (UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController *)controller
