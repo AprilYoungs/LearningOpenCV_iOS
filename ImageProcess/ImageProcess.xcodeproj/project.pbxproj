@@ -11,7 +11,6 @@
 		6F22D17721758F240012CA58 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F22D17621758F240012CA58 /* AppDelegate.m */; };
 		6F22D18221758F250012CA58 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F22D18021758F250012CA58 /* LaunchScreen.storyboard */; };
 		6F22D18521758F250012CA58 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F22D18421758F250012CA58 /* main.m */; };
-		6F22D18D21758F5D0012CA58 /* FilterViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6F22D18C21758F5D0012CA58 /* FilterViewController.mm */; };
 		6F22D19E2175C19D0012CA58 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F22D19D2175C19D0012CA58 /* Accelerate.framework */; };
 		6F22D1A02175C1A60012CA58 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F22D19F2175C1A60012CA58 /* AssetsLibrary.framework */; };
 		6F22D1A22175C1AE0012CA58 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F22D1A12175C1AE0012CA58 /* AVFoundation.framework */; };
@@ -22,12 +21,14 @@
 		6F22D1AC2175C1DF0012CA58 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F22D1AB2175C1DE0012CA58 /* QuartzCore.framework */; };
 		6F22D1AE2175C1E60012CA58 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F22D1AD2175C1E60012CA58 /* UIKit.framework */; };
 		6F22D1B02175C1EF0012CA58 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F22D1AF2175C1EF0012CA58 /* Foundation.framework */; };
-		6F22D1B32175E17C0012CA58 /* CVTool.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6F22D1B22175E17C0012CA58 /* CVTool.mm */; };
-		6F22D1B62175E3B20012CA58 /* CameraController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6F22D1B42175E3B10012CA58 /* CameraController.mm */; };
-		6F22D1B92176CF160012CA58 /* KMPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F22D1B82176CF160012CA58 /* KMPickerController.m */; };
-		6F6236712189921800F2304C /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F62366F2189921800F2304C /* MenuViewController.m */; };
-		6F6236722189921800F2304C /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F6236702189921800F2304C /* MenuViewController.xib */; };
-		6F623676218ADACE00F2304C /* ImageEditController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6F623674218ADACE00F2304C /* ImageEditController.mm */; };
+		6F6236A3218AFAD900F2304C /* FilterViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6F62369A218AFAD900F2304C /* FilterViewController.mm */; };
+		6F6236A4218AFAD900F2304C /* ImageEditController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6F62369C218AFAD900F2304C /* ImageEditController.mm */; };
+		6F6236A5218AFAD900F2304C /* CameraController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6F6236A0218AFAD900F2304C /* CameraController.mm */; };
+		6F6236A6218AFAD900F2304C /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F6236A1218AFAD900F2304C /* MenuViewController.xib */; };
+		6F6236A7218AFAD900F2304C /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6236A2218AFAD900F2304C /* MenuViewController.m */; };
+		6F6236B0218AFAE200F2304C /* UIViewController+AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6236AB218AFAE200F2304C /* UIViewController+AlertView.m */; };
+		6F6236B1218AFAE200F2304C /* KMPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6236AC218AFAE200F2304C /* KMPickerController.m */; };
+		6F6236B2218AFAE200F2304C /* CVTool.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6F6236AD218AFAE200F2304C /* CVTool.mm */; };
 		6F8F9B312179CAE800A71113 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F8F9B302179CAE800A71113 /* Photos.framework */; };
 		6FDA767F217DB76C00638A88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FDA767E217DB76C00638A88 /* Assets.xcassets */; };
 		D3263DF2DFC2F356C8FCC338 /* libPods-ImageProcess.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E775FC56ADDA7A134CA4C2C6 /* libPods-ImageProcess.a */; };
@@ -41,8 +42,6 @@
 		6F22D18121758F250012CA58 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6F22D18321758F250012CA58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6F22D18421758F250012CA58 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		6F22D18B21758F5D0012CA58 /* FilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterViewController.h; sourceTree = "<group>"; };
-		6F22D18C21758F5D0012CA58 /* FilterViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FilterViewController.mm; sourceTree = "<group>"; };
 		6F22D19D2175C19D0012CA58 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		6F22D19F2175C1A60012CA58 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		6F22D1A12175C1AE0012CA58 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -53,18 +52,22 @@
 		6F22D1AB2175C1DE0012CA58 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		6F22D1AD2175C1E60012CA58 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6F22D1AF2175C1EF0012CA58 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		6F22D1B12175E17C0012CA58 /* CVTool.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CVTool.hh; sourceTree = "<group>"; };
-		6F22D1B22175E17C0012CA58 /* CVTool.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = CVTool.mm; sourceTree = "<group>"; };
-		6F22D1B42175E3B10012CA58 /* CameraController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CameraController.mm; sourceTree = "<group>"; };
-		6F22D1B52175E3B20012CA58 /* CameraController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraController.h; sourceTree = "<group>"; };
-		6F22D1B72176CF160012CA58 /* KMPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMPickerController.h; sourceTree = "<group>"; };
-		6F22D1B82176CF160012CA58 /* KMPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMPickerController.m; sourceTree = "<group>"; };
 		6F2657432179C77C004B18D0 /* ImageProcess_prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageProcess_prefix.pch; sourceTree = "<group>"; };
-		6F62366E2189921700F2304C /* MenuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
-		6F62366F2189921800F2304C /* MenuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
-		6F6236702189921800F2304C /* MenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuViewController.xib; sourceTree = "<group>"; };
-		6F623673218ADACE00F2304C /* ImageEditController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageEditController.h; sourceTree = "<group>"; };
-		6F623674218ADACE00F2304C /* ImageEditController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ImageEditController.mm; sourceTree = "<group>"; };
+		6F62369A218AFAD900F2304C /* FilterViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FilterViewController.mm; sourceTree = "<group>"; };
+		6F62369B218AFAD900F2304C /* CameraController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraController.h; sourceTree = "<group>"; };
+		6F62369C218AFAD900F2304C /* ImageEditController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ImageEditController.mm; sourceTree = "<group>"; };
+		6F62369D218AFAD900F2304C /* ImageEditController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageEditController.h; sourceTree = "<group>"; };
+		6F62369E218AFAD900F2304C /* FilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterViewController.h; sourceTree = "<group>"; };
+		6F62369F218AFAD900F2304C /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
+		6F6236A0218AFAD900F2304C /* CameraController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CameraController.mm; sourceTree = "<group>"; };
+		6F6236A1218AFAD900F2304C /* MenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuViewController.xib; sourceTree = "<group>"; };
+		6F6236A2218AFAD900F2304C /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		6F6236AA218AFAE200F2304C /* UIViewController+AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+AlertView.h"; sourceTree = "<group>"; };
+		6F6236AB218AFAE200F2304C /* UIViewController+AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+AlertView.m"; sourceTree = "<group>"; };
+		6F6236AC218AFAE200F2304C /* KMPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMPickerController.m; sourceTree = "<group>"; };
+		6F6236AD218AFAE200F2304C /* CVTool.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CVTool.mm; sourceTree = "<group>"; };
+		6F6236AE218AFAE200F2304C /* CVTool.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CVTool.hh; sourceTree = "<group>"; };
+		6F6236AF218AFAE200F2304C /* KMPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMPickerController.h; sourceTree = "<group>"; };
 		6F8F9B302179CAE800A71113 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		6FDA767E217DB76C00638A88 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		868F8578461A805C93ED14C7 /* Pods-ImageProcess.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageProcess.release.xcconfig"; path = "Pods/Target Support Files/Pods-ImageProcess/Pods-ImageProcess.release.xcconfig"; sourceTree = "<group>"; };
@@ -119,24 +122,9 @@
 			children = (
 				6F22D17521758F240012CA58 /* AppDelegate.h */,
 				6F22D17621758F240012CA58 /* AppDelegate.m */,
-				6F62366E2189921700F2304C /* MenuViewController.h */,
-				6F62366F2189921800F2304C /* MenuViewController.m */,
-				6F6236702189921800F2304C /* MenuViewController.xib */,
-				6F22D18B21758F5D0012CA58 /* FilterViewController.h */,
-				6F22D18C21758F5D0012CA58 /* FilterViewController.mm */,
-				6F22D1B52175E3B20012CA58 /* CameraController.h */,
-				6F22D1B42175E3B10012CA58 /* CameraController.mm */,
-				6F623673218ADACE00F2304C /* ImageEditController.h */,
-				6F623674218ADACE00F2304C /* ImageEditController.mm */,
-				6F22D1B12175E17C0012CA58 /* CVTool.hh */,
-				6F22D1B22175E17C0012CA58 /* CVTool.mm */,
-				6F22D1B72176CF160012CA58 /* KMPickerController.h */,
-				6F22D1B82176CF160012CA58 /* KMPickerController.m */,
-				6F22D18021758F250012CA58 /* LaunchScreen.storyboard */,
-				6F22D18321758F250012CA58 /* Info.plist */,
-				6F22D18421758F250012CA58 /* main.m */,
-				6F2657432179C77C004B18D0 /* ImageProcess_prefix.pch */,
-				6FDA767E217DB76C00638A88 /* Assets.xcassets */,
+				6F623699218AFAD900F2304C /* Classes */,
+				6F6236A8218AFAE200F2304C /* tool */,
+				6F62367B218AF63D00F2304C /* Supportfiles */,
 			);
 			path = ImageProcess;
 			sourceTree = "<group>";
@@ -159,6 +147,55 @@
 				E775FC56ADDA7A134CA4C2C6 /* libPods-ImageProcess.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6F62367B218AF63D00F2304C /* Supportfiles */ = {
+			isa = PBXGroup;
+			children = (
+				6FDA767E217DB76C00638A88 /* Assets.xcassets */,
+				6F2657432179C77C004B18D0 /* ImageProcess_prefix.pch */,
+				6F22D18421758F250012CA58 /* main.m */,
+				6F22D18321758F250012CA58 /* Info.plist */,
+				6F22D18021758F250012CA58 /* LaunchScreen.storyboard */,
+			);
+			name = Supportfiles;
+			sourceTree = "<group>";
+		};
+		6F623699218AFAD900F2304C /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				6F62369B218AFAD900F2304C /* CameraController.h */,
+				6F6236A0218AFAD900F2304C /* CameraController.mm */,
+				6F62369E218AFAD900F2304C /* FilterViewController.h */,
+				6F62369A218AFAD900F2304C /* FilterViewController.mm */,
+				6F62369D218AFAD900F2304C /* ImageEditController.h */,
+				6F62369C218AFAD900F2304C /* ImageEditController.mm */,
+				6F62369F218AFAD900F2304C /* MenuViewController.h */,
+				6F6236A2218AFAD900F2304C /* MenuViewController.m */,
+				6F6236A1218AFAD900F2304C /* MenuViewController.xib */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		6F6236A8218AFAE200F2304C /* tool */ = {
+			isa = PBXGroup;
+			children = (
+				6F6236A9218AFAE200F2304C /* category */,
+				6F6236AE218AFAE200F2304C /* CVTool.hh */,
+				6F6236AD218AFAE200F2304C /* CVTool.mm */,
+				6F6236AF218AFAE200F2304C /* KMPickerController.h */,
+				6F6236AC218AFAE200F2304C /* KMPickerController.m */,
+			);
+			path = tool;
+			sourceTree = "<group>";
+		};
+		6F6236A9218AFAE200F2304C /* category */ = {
+			isa = PBXGroup;
+			children = (
+				6F6236AA218AFAE200F2304C /* UIViewController+AlertView.h */,
+				6F6236AB218AFAE200F2304C /* UIViewController+AlertView.m */,
+			);
+			path = category;
 			sourceTree = "<group>";
 		};
 		9694649872A40ADE48A4FE01 /* Pods */ = {
@@ -230,7 +267,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6FDA767F217DB76C00638A88 /* Assets.xcassets in Resources */,
-				6F6236722189921800F2304C /* MenuViewController.xib in Resources */,
+				6F6236A6218AFAD900F2304C /* MenuViewController.xib in Resources */,
 				6F22D18221758F250012CA58 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -268,13 +305,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F22D18521758F250012CA58 /* main.m in Sources */,
-				6F22D1B62175E3B20012CA58 /* CameraController.mm in Sources */,
-				6F22D18D21758F5D0012CA58 /* FilterViewController.mm in Sources */,
-				6F22D1B32175E17C0012CA58 /* CVTool.mm in Sources */,
-				6F6236712189921800F2304C /* MenuViewController.m in Sources */,
-				6F623676218ADACE00F2304C /* ImageEditController.mm in Sources */,
+				6F6236B1218AFAE200F2304C /* KMPickerController.m in Sources */,
+				6F6236A7218AFAD900F2304C /* MenuViewController.m in Sources */,
+				6F6236A5218AFAD900F2304C /* CameraController.mm in Sources */,
+				6F6236A3218AFAD900F2304C /* FilterViewController.mm in Sources */,
+				6F6236B2218AFAE200F2304C /* CVTool.mm in Sources */,
 				6F22D17721758F240012CA58 /* AppDelegate.m in Sources */,
-				6F22D1B92176CF160012CA58 /* KMPickerController.m in Sources */,
+				6F6236A4218AFAD900F2304C /* ImageEditController.mm in Sources */,
+				6F6236B0218AFAE200F2304C /* UIViewController+AlertView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

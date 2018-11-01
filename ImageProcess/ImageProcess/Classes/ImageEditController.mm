@@ -94,7 +94,6 @@ UIPopoverPresentationControllerDelegate>
     [self presentViewController:picker animated:YES completion:nil];
     
     /** show the image picker with a bubble */
-    picker.preferredContentSize = self.view.bounds.size;
     picker.modalPresentationStyle = UIModalPresentationPopover;
     picker.popoverPresentationController.delegate = self;
     picker.popoverPresentationController.sourceView = self.pickerBtn;
@@ -166,6 +165,8 @@ UIPopoverPresentationControllerDelegate>
         
     } completionHandler:^(BOOL success, NSError * _Nullable error) {
         NSLog(@"success = %d, error = %@", success, error);
+        NSString *message = success? @"Save success!": error.domain;
+        [self showAlertWithTitle:message content:nil conformStr:@"OK" conformAction:nil];
     }];
 }
 

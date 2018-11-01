@@ -15,6 +15,8 @@
 
 #import <Masonry.h>
 
+#import "UIViewController+AlertView.h"
+
 
 #define HEX_COLOR_ALPHA(_HEX_,a) [UIColor colorWithRed:((float)((_HEX_ & 0xFF0000) >> 16))/255.0 green:((float)((_HEX_ & 0xFF00) >> 8))/255.0 blue:((float)(_HEX_ & 0xFF))/255.0 alpha:a]
 
