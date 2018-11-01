@@ -15,6 +15,8 @@ typedef void(^SelectBlock)(NSUInteger index);
 /** 启动的时候默认选择的index */
 @property (assign, nonatomic) NSInteger defaultIndex;
 
+/** pickerview 项目的颜色 */
+@property (strong, nonatomic) UIColor *attColor;
 
 /**
  pop 出来一个 pickerview

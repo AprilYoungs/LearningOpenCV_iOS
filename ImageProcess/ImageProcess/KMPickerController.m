@@ -75,7 +75,9 @@ UIPopoverPresentationControllerDelegate>
 
 - (NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    NSAttributedString* attstr = [[NSAttributedString alloc] initWithString:self.dataArr[row] attributes:@{NSForegroundColorAttributeName:HEX_COLOR(0x3090FF),NSFontAttributeName:[UIFont systemFontOfSize:14]}];
+    UIColor *color = self.attColor == nil? HEX_COLOR(0x3090FF): self.attColor;
+    
+    NSAttributedString* attstr = [[NSAttributedString alloc] initWithString:self.dataArr[row] attributes:@{NSForegroundColorAttributeName:color,NSFontAttributeName:[UIFont systemFontOfSize:14]}];
     return attstr;
 }
 - (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component

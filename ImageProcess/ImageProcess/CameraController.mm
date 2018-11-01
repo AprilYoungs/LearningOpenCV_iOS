@@ -48,6 +48,8 @@
 
 - (void)setupUI
 {
+    self.view.backgroundColor = [UIColor whiteColor];
+    
     self.imageView = [[UIImageView alloc] init];
     self.imageView.contentMode = UIViewContentModeScaleAspectFit;
     [self.view addSubview:self.imageView];
