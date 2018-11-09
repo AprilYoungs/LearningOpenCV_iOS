@@ -9,6 +9,7 @@
 #import "CameraController.h"
 #import "CVTool.hh"
 #import <Photos/Photos.h>
+#import <MediaPlayer/MediaPlayer.h>
 #import "KMPickerController.h"
 
 @interface CameraController ()
@@ -42,7 +43,12 @@
     
     [self setupUI];
     [self setupCaptureSession];
+    
+    /** observer the volume button events */
+    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveImage) name:@"AVSystemController_SystemVolumeDidChangeNotification" object:nil];
 }
+
 
 - (void)setupUI
 {
@@ -78,6 +84,13 @@
     
     [self setToolbarItems:@[flexItem, fliterItem]];
     self.navigationController.toolbar.tintColor = [UIColor blackColor];
+    
+    /** remove system volumeview */
+    MPVolumeView *volumeView = [[MPVolumeView alloc] initWithFrame:{{-20,-20},{5,5}}];
+    volumeView.hidden = NO;
+    [self.view addSubview:volumeView];
+    NSError *error;
+    [[AVAudioSession sharedInstance] setActive:YES error:&error];
 }
 
 - (void)showFilters
@@ -267,6 +280,13 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     CGImageRelease(quartzImage);
     
     return (image);
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    [[UIApplication sharedApplication] endReceivingRemoteControlEvents];
 }
 
 @end

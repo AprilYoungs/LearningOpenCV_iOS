@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		115BAA99217D6C67002B76E3 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 115BAA98217D6C67002B76E3 /* opencv2.framework */; };
+		6F0F2AA2219566B8000F257E /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F0F2AA1219566B8000F257E /* MediaPlayer.framework */; };
 		6F22D17721758F240012CA58 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F22D17621758F240012CA58 /* AppDelegate.m */; };
 		6F22D18221758F250012CA58 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F22D18021758F250012CA58 /* LaunchScreen.storyboard */; };
 		6F22D18521758F250012CA58 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F22D18421758F250012CA58 /* main.m */; };
@@ -36,6 +37,7 @@
 
 /* Begin PBXFileReference section */
 		115BAA98217D6C67002B76E3 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
+		6F0F2AA1219566B8000F257E /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		6F22D17221758F240012CA58 /* ImageProcess.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageProcess.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F22D17521758F240012CA58 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6F22D17621758F240012CA58 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F0F2AA2219566B8000F257E /* MediaPlayer.framework in Frameworks */,
 				6F8F9B312179CAE800A71113 /* Photos.framework in Frameworks */,
 				6F22D1B02175C1EF0012CA58 /* Foundation.framework in Frameworks */,
 				6F22D1AE2175C1E60012CA58 /* UIKit.framework in Frameworks */,
@@ -132,6 +135,7 @@
 		6F22D18F2175905B0012CA58 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6F0F2AA1219566B8000F257E /* MediaPlayer.framework */,
 				115BAA98217D6C67002B76E3 /* opencv2.framework */,
 				6F8F9B302179CAE800A71113 /* Photos.framework */,
 				6F22D1AF2175C1EF0012CA58 /* Foundation.framework */,
@@ -166,13 +170,13 @@
 			children = (
 				6F62369B218AFAD900F2304C /* CameraController.h */,
 				6F6236A0218AFAD900F2304C /* CameraController.mm */,
-				6F62369E218AFAD900F2304C /* FilterViewController.h */,
-				6F62369A218AFAD900F2304C /* FilterViewController.mm */,
 				6F62369D218AFAD900F2304C /* ImageEditController.h */,
 				6F62369C218AFAD900F2304C /* ImageEditController.mm */,
 				6F62369F218AFAD900F2304C /* MenuViewController.h */,
 				6F6236A2218AFAD900F2304C /* MenuViewController.m */,
 				6F6236A1218AFAD900F2304C /* MenuViewController.xib */,
+				6F62369E218AFAD900F2304C /* FilterViewController.h */,
+				6F62369A218AFAD900F2304C /* FilterViewController.mm */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
