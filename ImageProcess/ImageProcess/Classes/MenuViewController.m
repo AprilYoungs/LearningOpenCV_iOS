@@ -9,6 +9,8 @@
 #import "MenuViewController.h"
 #import "CameraController.h"
 #import "ImageEditController.h"
+#import "PraticeController.h"
+#import "FilterViewController.h"
 
 @interface MenuViewController ()
 
@@ -36,6 +38,10 @@
 - (IBAction)shootingPhoto:(id)sender {
     
     [self.navigationController pushViewController:[[CameraController alloc] init] animated:YES];
+}
+
+- (IBAction)practice:(id)sender {
+    [self.navigationController pushViewController:[[PraticeController alloc] init] animated:YES];
 }
 
 

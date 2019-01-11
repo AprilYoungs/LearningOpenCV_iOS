@@ -30,7 +30,14 @@
 		6F6236B0218AFAE200F2304C /* UIViewController+AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6236AB218AFAE200F2304C /* UIViewController+AlertView.m */; };
 		6F6236B1218AFAE200F2304C /* KMPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6236AC218AFAE200F2304C /* KMPickerController.m */; };
 		6F6236B2218AFAE200F2304C /* CVTool.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6F6236AD218AFAE200F2304C /* CVTool.mm */; };
+		6F78907521E5A48800680177 /* PraticeController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6F78907421E5A48800680177 /* PraticeController.mm */; };
 		6F8F9B312179CAE800A71113 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F8F9B302179CAE800A71113 /* Photos.framework */; };
+		6FC6532C21E5E34F00A4F295 /* opencv_face_detector_uint8.pb in Resources */ = {isa = PBXBuildFile; fileRef = 6FC6532621E5E34F00A4F295 /* opencv_face_detector_uint8.pb */; };
+		6FC6532D21E5E34F00A4F295 /* mmod_human_face_detector.dat in Resources */ = {isa = PBXBuildFile; fileRef = 6FC6532721E5E34F00A4F295 /* mmod_human_face_detector.dat */; };
+		6FC6532E21E5E34F00A4F295 /* deploy.prototxt in Resources */ = {isa = PBXBuildFile; fileRef = 6FC6532821E5E34F00A4F295 /* deploy.prototxt */; };
+		6FC6532F21E5E34F00A4F295 /* res10_300x300_ssd_iter_140000_fp16.caffemodel in Resources */ = {isa = PBXBuildFile; fileRef = 6FC6532921E5E34F00A4F295 /* res10_300x300_ssd_iter_140000_fp16.caffemodel */; };
+		6FC6533021E5E34F00A4F295 /* haarcascade_frontalface_default.xml in Resources */ = {isa = PBXBuildFile; fileRef = 6FC6532A21E5E34F00A4F295 /* haarcascade_frontalface_default.xml */; };
+		6FC6533121E5E34F00A4F295 /* opencv_face_detector.pbtxt in Resources */ = {isa = PBXBuildFile; fileRef = 6FC6532B21E5E34F00A4F295 /* opencv_face_detector.pbtxt */; };
 		6FDA767F217DB76C00638A88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FDA767E217DB76C00638A88 /* Assets.xcassets */; };
 		D3263DF2DFC2F356C8FCC338 /* libPods-ImageProcess.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E775FC56ADDA7A134CA4C2C6 /* libPods-ImageProcess.a */; };
 /* End PBXBuildFile section */
@@ -70,7 +77,15 @@
 		6F6236AD218AFAE200F2304C /* CVTool.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CVTool.mm; sourceTree = "<group>"; };
 		6F6236AE218AFAE200F2304C /* CVTool.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CVTool.hh; sourceTree = "<group>"; };
 		6F6236AF218AFAE200F2304C /* KMPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMPickerController.h; sourceTree = "<group>"; };
+		6F78907321E5A48800680177 /* PraticeController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PraticeController.h; sourceTree = "<group>"; };
+		6F78907421E5A48800680177 /* PraticeController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = PraticeController.mm; sourceTree = "<group>"; };
 		6F8F9B302179CAE800A71113 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		6FC6532621E5E34F00A4F295 /* opencv_face_detector_uint8.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = opencv_face_detector_uint8.pb; sourceTree = "<group>"; };
+		6FC6532721E5E34F00A4F295 /* mmod_human_face_detector.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = mmod_human_face_detector.dat; sourceTree = "<group>"; };
+		6FC6532821E5E34F00A4F295 /* deploy.prototxt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = deploy.prototxt; sourceTree = "<group>"; };
+		6FC6532921E5E34F00A4F295 /* res10_300x300_ssd_iter_140000_fp16.caffemodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = res10_300x300_ssd_iter_140000_fp16.caffemodel; sourceTree = "<group>"; };
+		6FC6532A21E5E34F00A4F295 /* haarcascade_frontalface_default.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_frontalface_default.xml; sourceTree = "<group>"; };
+		6FC6532B21E5E34F00A4F295 /* opencv_face_detector.pbtxt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = opencv_face_detector.pbtxt; sourceTree = "<group>"; };
 		6FDA767E217DB76C00638A88 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		868F8578461A805C93ED14C7 /* Pods-ImageProcess.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageProcess.release.xcconfig"; path = "Pods/Target Support Files/Pods-ImageProcess/Pods-ImageProcess.release.xcconfig"; sourceTree = "<group>"; };
 		A861B17C52DE0A29C89872B1 /* Pods-ImageProcess.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageProcess.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ImageProcess/Pods-ImageProcess.debug.xcconfig"; sourceTree = "<group>"; };
@@ -123,6 +138,7 @@
 		6F22D17421758F240012CA58 /* ImageProcess */ = {
 			isa = PBXGroup;
 			children = (
+				6F78907021E5A3C100680177 /* Resource */,
 				6F22D17521758F240012CA58 /* AppDelegate.h */,
 				6F22D17621758F240012CA58 /* AppDelegate.m */,
 				6F623699218AFAD900F2304C /* Classes */,
@@ -177,6 +193,8 @@
 				6F6236A1218AFAD900F2304C /* MenuViewController.xib */,
 				6F62369E218AFAD900F2304C /* FilterViewController.h */,
 				6F62369A218AFAD900F2304C /* FilterViewController.mm */,
+				6F78907321E5A48800680177 /* PraticeController.h */,
+				6F78907421E5A48800680177 /* PraticeController.mm */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -200,6 +218,27 @@
 				6F6236AB218AFAE200F2304C /* UIViewController+AlertView.m */,
 			);
 			path = category;
+			sourceTree = "<group>";
+		};
+		6F78907021E5A3C100680177 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				6FC6532521E5E34F00A4F295 /* models */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		6FC6532521E5E34F00A4F295 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				6FC6532621E5E34F00A4F295 /* opencv_face_detector_uint8.pb */,
+				6FC6532721E5E34F00A4F295 /* mmod_human_face_detector.dat */,
+				6FC6532821E5E34F00A4F295 /* deploy.prototxt */,
+				6FC6532921E5E34F00A4F295 /* res10_300x300_ssd_iter_140000_fp16.caffemodel */,
+				6FC6532A21E5E34F00A4F295 /* haarcascade_frontalface_default.xml */,
+				6FC6532B21E5E34F00A4F295 /* opencv_face_detector.pbtxt */,
+			);
+			path = models;
 			sourceTree = "<group>";
 		};
 		9694649872A40ADE48A4FE01 /* Pods */ = {
@@ -272,7 +311,13 @@
 			files = (
 				6FDA767F217DB76C00638A88 /* Assets.xcassets in Resources */,
 				6F6236A6218AFAD900F2304C /* MenuViewController.xib in Resources */,
+				6FC6533021E5E34F00A4F295 /* haarcascade_frontalface_default.xml in Resources */,
+				6FC6532E21E5E34F00A4F295 /* deploy.prototxt in Resources */,
+				6FC6532C21E5E34F00A4F295 /* opencv_face_detector_uint8.pb in Resources */,
 				6F22D18221758F250012CA58 /* LaunchScreen.storyboard in Resources */,
+				6FC6532D21E5E34F00A4F295 /* mmod_human_face_detector.dat in Resources */,
+				6FC6532F21E5E34F00A4F295 /* res10_300x300_ssd_iter_140000_fp16.caffemodel in Resources */,
+				6FC6533121E5E34F00A4F295 /* opencv_face_detector.pbtxt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,6 +357,7 @@
 				6F6236B1218AFAE200F2304C /* KMPickerController.m in Sources */,
 				6F6236A7218AFAD900F2304C /* MenuViewController.m in Sources */,
 				6F6236A5218AFAD900F2304C /* CameraController.mm in Sources */,
+				6F78907521E5A48800680177 /* PraticeController.mm in Sources */,
 				6F6236A3218AFAD900F2304C /* FilterViewController.mm in Sources */,
 				6F6236B2218AFAE200F2304C /* CVTool.mm in Sources */,
 				6F22D17721758F240012CA58 /* AppDelegate.m in Sources */,
@@ -461,7 +507,7 @@
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ImageProcess/ImageProcess_prefix.pch";
 				INFOPLIST_FILE = ImageProcess/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -490,7 +536,7 @@
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ImageProcess/ImageProcess_prefix.pch";
 				INFOPLIST_FILE = ImageProcess/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
