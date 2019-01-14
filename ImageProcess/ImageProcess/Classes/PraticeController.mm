@@ -35,11 +35,18 @@ const float confidenceThreshold = 0.7;
 @property (assign, nonatomic) BOOL backCamera;
 
 @property (nonatomic,strong)UIImageView *imageView;
+
 @property (strong, nonatomic) UIButton *btnSave;
 
 @end
 
 @implementation PraticeController
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.videoCamera stop];
+}
 
 - (void)viewDidLoad
 {
@@ -177,13 +184,15 @@ const float confidenceThreshold = 0.7;
     UIImage *uiImg = [CVTool imageFromCVMat:image];
     
     
-//    if (!self.backCamera)
-//    {
-//        /** flip the image for front camera */
-//        uiImg = [UIImage imageWithCGImage:uiImg.CGImage scale:1 orientation:UIImageOrientationUpMirrored];
-//    }
+    if (!self.backCamera)
+    {
+        /** flip the image for front camera */
+        uiImg = [UIImage imageWithCGImage:uiImg.CGImage scale:1 orientation:UIImageOrientationUpMirrored];
+    }
     dispatch_sync(dispatch_get_main_queue(), ^{
+        
         self.imageView.image = uiImg;
+        
     });
 }
 
