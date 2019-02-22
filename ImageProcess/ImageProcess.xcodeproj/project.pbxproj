@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		115BAA99217D6C67002B76E3 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 115BAA98217D6C67002B76E3 /* opencv2.framework */; };
+		11BF1342221D312400786071 /* FLAnimatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 11BF133C221D312400786071 /* FLAnimatedImage.m */; };
+		11BF1343221D312400786071 /* FLAnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 11BF133D221D312400786071 /* FLAnimatedImageView.m */; };
 		6F0F2AA2219566B8000F257E /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F0F2AA1219566B8000F257E /* MediaPlayer.framework */; };
 		6F22D17721758F240012CA58 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F22D17621758F240012CA58 /* AppDelegate.m */; };
 		6F22D18221758F250012CA58 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F22D18021758F250012CA58 /* LaunchScreen.storyboard */; };
@@ -44,6 +46,10 @@
 
 /* Begin PBXFileReference section */
 		115BAA98217D6C67002B76E3 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
+		11BF133C221D312400786071 /* FLAnimatedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAnimatedImage.m; sourceTree = "<group>"; };
+		11BF133D221D312400786071 /* FLAnimatedImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAnimatedImageView.m; sourceTree = "<group>"; };
+		11BF133F221D312400786071 /* FLAnimatedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImage.h; sourceTree = "<group>"; };
+		11BF1340221D312400786071 /* FLAnimatedImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImageView.h; sourceTree = "<group>"; };
 		6F0F2AA1219566B8000F257E /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		6F22D17221758F240012CA58 /* ImageProcess.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageProcess.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F22D17521758F240012CA58 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -117,6 +123,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		11BF133A221D312400786071 /* FLAnimatedImage */ = {
+			isa = PBXGroup;
+			children = (
+				11BF133C221D312400786071 /* FLAnimatedImage.m */,
+				11BF133D221D312400786071 /* FLAnimatedImageView.m */,
+				11BF133F221D312400786071 /* FLAnimatedImage.h */,
+				11BF1340221D312400786071 /* FLAnimatedImageView.h */,
+			);
+			path = FLAnimatedImage;
+			sourceTree = "<group>";
+		};
 		6F22D16921758F240012CA58 = {
 			isa = PBXGroup;
 			children = (
@@ -202,6 +219,7 @@
 		6F6236A8218AFAE200F2304C /* tool */ = {
 			isa = PBXGroup;
 			children = (
+				11BF133A221D312400786071 /* FLAnimatedImage */,
 				6F6236A9218AFAE200F2304C /* category */,
 				6F6236AE218AFAE200F2304C /* CVTool.hh */,
 				6F6236AD218AFAE200F2304C /* CVTool.mm */,
@@ -360,8 +378,10 @@
 				6F78907521E5A48800680177 /* PraticeController.mm in Sources */,
 				6F6236A3218AFAD900F2304C /* FilterViewController.mm in Sources */,
 				6F6236B2218AFAE200F2304C /* CVTool.mm in Sources */,
+				11BF1342221D312400786071 /* FLAnimatedImage.m in Sources */,
 				6F22D17721758F240012CA58 /* AppDelegate.m in Sources */,
 				6F6236A4218AFAD900F2304C /* ImageEditController.mm in Sources */,
+				11BF1343221D312400786071 /* FLAnimatedImageView.m in Sources */,
 				6F6236B0218AFAE200F2304C /* UIViewController+AlertView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

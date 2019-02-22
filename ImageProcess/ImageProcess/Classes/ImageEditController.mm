@@ -10,6 +10,8 @@
 #import "KMPickerController.h"
 #import <Photos/Photos.h>
 #import "CVTool.hh"
+#import "FLAnimatedImageView.h"
+#import "FLAnimatedImage.h"
 
 @interface ImageEditController ()
 <UINavigationControllerDelegate,
@@ -18,7 +20,7 @@ UIPopoverPresentationControllerDelegate>
 
 @property (strong, nonatomic) UIImage *originalImage;
 
-@property (strong, nonatomic) UIImageView *imageView;
+@property (strong, nonatomic) FLAnimatedImageView *imageView;
 
 @property (weak, nonatomic) UIButton *pickerBtn;
 
@@ -75,7 +77,7 @@ UIPopoverPresentationControllerDelegate>
     
     
     /** set canvas */
-    self.imageView = [[UIImageView alloc] initWithImage:self.originalImage];
+    self.imageView = [[FLAnimatedImageView alloc] initWithImage:self.originalImage];
     self.imageView.contentMode = UIViewContentModeScaleAspectFit;
     [self.view addSubview:self.imageView];
     [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -175,9 +177,21 @@ UIPopoverPresentationControllerDelegate>
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info
 {
     
-    UIImage *image = info[UIImagePickerControllerOriginalImage];
-    self.originalImage = image;
-    self.imageView.image = image;
+    NSURL *pathUrl = info[@"UIImagePickerControllerImageURL"];
+    
+    if ([pathUrl.absoluteString hasSuffix:@".gif"])
+    {
+        NSData *gifData = [NSData dataWithContentsOfURL:pathUrl];
+        FLAnimatedImage *gifImage = [FLAnimatedImage animatedImageWithGIFData:gifData];
+        self.imageView.animatedImage = gifImage;
+    }
+    else
+    {
+        UIImage *image = info[UIImagePickerControllerOriginalImage];
+        self.originalImage = image;
+        self.imageView.image = image;
+    }
+    
     
     [picker dismissViewControllerAnimated:NO completion:nil];
 }
