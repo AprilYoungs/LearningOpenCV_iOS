@@ -178,6 +178,8 @@ UIPopoverPresentationControllerDelegate>
 {
     
     NSURL *pathUrl = info[@"UIImagePickerControllerImageURL"];
+    UIImage *image = info[UIImagePickerControllerOriginalImage];
+    self.originalImage = image;
     
     if ([pathUrl.absoluteString hasSuffix:@".gif"])
     {
@@ -187,8 +189,6 @@ UIPopoverPresentationControllerDelegate>
     }
     else
     {
-        UIImage *image = info[UIImagePickerControllerOriginalImage];
-        self.originalImage = image;
         self.imageView.image = image;
     }
     
